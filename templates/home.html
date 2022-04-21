@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Главная</title>
+    <style type="text/css">
+  </style>
+</head>
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" href="/">К У П И - П Р О Д А Й</a></h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="/">Главная</a>
+      <a class="p-2 text-dark" href="/my_adds">Мои объявления</a>
+      <a class="p-2 text-dark" href="/add">Разместить объявление</a>
+      <a class="p-2 text-dark" href="/profile/{{ id }}">Личный кабинет</a>
+      <a class="p-2 text-dark" href="/about">О нас</a>
+  </nav>
+        {% if id != 1 %}
+        <a class="btn btn-outline-primary" href="/profile/{{ id }}">{{ art1.name }}</a>
+        {% else %}
+  <a class="btn btn-outline-primary mr-md-3" href="/sign_in">Войти</a>
+  <a class="btn btn-outline-primary" href="/sign_up">Зарегистрироваться</a>
+        {% endif %}
+</div>
+<div class="album  bg-light">
+    <div class="container">
+        <form name="search" action="search" class="form-inline mt-2 mt-md-1 mr-sm-4 py-3" method="post">
+                <div class="category-select-root-2U90T form-control mr-sm-2 col-md-0">
+                    <div class="category-select-select-3qe_m select-select-box-3LBfK select-size-s-2gvAy">
+                        Сортировка по объявлениям
+                        <select name="category_id" id="category" data-marker="search-form/category" class="select-select-3CHiM">
+                            <option selected="" value="0" data-marker="option">Не выбрано...</option>
+                            <option value="1" class="" data-marker="option(1)">Транспорт</option>
+                            <option value="2" data-marker="option(9)">Недвижимость</option>
+                            <option value="3" data-marker="option(11)">Личные вещи</option>
+                            <option value="4" data-marker="option(10)">Для дома и дачи</option>
+                            <option value="5" data-marker="option(10)">Электроника</option>
+                            <option value="6" class="" data-marker="option(4)">Хобби и отдых</option>
+                            <option value="7" class="" data-marker="option(4)">Другое</option>
+                        </select>
+                        <div class="select-part-KP5ck select-icon-23qbw">
+                            <svg width="1em" height="1em" viewBox="0 0 28 28" style="font-size:1.4em" class="icon-icon-2HGyI icon-variant-default-1eXXW" aria-hidden="true" role="img"></svg>
+                        </div>
+                    </div>
+                </div>
+            <input name="search_input" class="form-control mr-sm-2 col-md-0" type="text" placeholder="Поиск..." aria-label="Search">
+            <input type="submit" value="Искать" class="btn btn-outline-success my-2 my-sm-0">
+        </form>
+      <div class="row">
+        {% for el in cards_id %}
+          {% if adds[el].actual == 1 %}
+        <div class="col-md-4 order-md-1">
+          <div class="card mb-4 shadow-sm">
+            <img src="static/img/{{ el }}/original.jpg" width="100%">
+            <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>{{ adds[el].title }}</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Нет фото</text></svg> -->
+              <div class="card-body">
+              <p class="card-text">{{ adds[el].title }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="card-text text-right"><b>{{ adds[el].type }}</b></p>
+                <p class="card-text text-left"> {{ cost[el] }}₽</p>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="/add/{{ el }}">
+                    <button type="button" class="btn btn-sm btn-outline-secondary mb-3 mr-1">Посмотреть</button>
+                  </a>
+                  <button type="button" class="mb-3 mr-1">{{ phone_number[el] }}</button>
+                </div>
+                <small style='font-size: 50%;' class="text-muted">{{ dates[el] }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+          {% endif %}
+        {% endfor %}
+      </div><p class="float-right">
+          <a href="#">Вверх</a>
+        </p>
+    </div>
+  </div>
+</body>
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">© 2022 Seregin Corp.</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="/about">Связаться с нами</a></li>
+    </ul>
+  </footer>
+</html>
+

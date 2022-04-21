@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Зарегистрироваться</title>
+</head>
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" href="/">К У П И - П Р О Д А Й</a></h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="/">Главная</a>
+      <a class="p-2 text-dark" href="/my_adds">Мои объявления</a>
+      <a class="p-2 text-dark" href="/add">Разместить объявление</a>
+      <a class="p-2 text-dark" href="/profile/{{ id }}">Личный кабинет</a>
+      <a class="p-2 text-dark" href="/about">О нас</a>
+  </nav>
+        {% if id != '1' %}
+        <a class="btn btn-outline-primary" href="/profile/{{ id }}">{{ art1.name }}</a>
+        {% else %}
+  <a class="btn btn-outline-primary mr-md-3" href="/sign_in">Войти</a>
+  <a class="btn btn-outline-primary" href="/sign_up">Зарегистрироваться</a>
+        {% endif %}
+</div>
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Зарегистрироваться</h2>
+    <p class="lead">Заполняйте формы внимательно</p>
+  </div>
+  <div class="row">
+    <div class="col-md-12 order-md-1">
+      <h4 class="mb-3 text-center"></h4>
+      <form class="needs-validation text-center" method="post">
+        <div class="row align-center">
+          <div class="col-sm mb-3">
+            <label for="Name">Имя и фамилия</label>
+            <input type="text" class="form-control center" name="Name" id="Name" placeholder="Иванов Иван"><br>
+          </div>
+        </div>
+        <div class="mb-3 text-center">
+          <label for="email">Электронная почта <span class="text-muted">(Необязательно)</span></label>
+          <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com"><br>
+          <div class="invalid-feedback text-center">
+          </div>
+        </div>
+        <div class="mb-3 text-center">
+          <label for="phone_number">Номер телефона <span class="text-muted"></span></label>
+          <input type="number" class="form-control" name="phone_number" id="phone_number" placeholder="+7-XXX-XXX-XX-XX"><br>
+          <div class="invalid-feedback text-center">
+          </div>
+        </div>
+        <div class="mb-3 text-center">
+          <label for="password1">Пароль <span class="text-muted">(Пароль должен содержать от 8 символов и не должен быть слишком простым)</span></label>
+          <input type="password" class="form-control" name="password1" id="password1" placeholder="Пароль"><br>
+          <div class="invalid-feedback text-center">
+          </div>
+            <label for="password2"><br>Повторите пароль <span class="text-muted"></span></label>
+          <input type="password" class="form-control" name="password2" id="password2" placeholder="Повторите пароль"><br>
+          <div class="invalid-feedback text-center">
+          </div>
+        </div>
+        <h3>Ошибка! Имя занято.</h3>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Продолжить</button>
+      </form>
+    </div>
+  </div>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">© 2022 Seregin Corp.</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="/about">Связаться с нами</a></li>
+    </ul>
+  </footer>
+</div>
+</body>
+</html>

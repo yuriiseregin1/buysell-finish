@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Мои объявления</title>
+</head>
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" href="/">К У П И - П Р О Д А Й</a></h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="/">Главная</a>
+      <a class="p-2 text-dark" href="/my_adds">Мои объявления</a>
+      <a class="p-2 text-dark" href="/add">Разместить объявление</a>
+      <a class="p-2 text-dark" href="/profile/{{ id }}">Личный кабинет</a>
+      <a class="p-2 text-dark" href="/about">О нас</a>
+  </nav>
+        {% if id != 1 %}
+        <a class="btn btn-outline-primary" href="/profile/{{ id }}">{{ art1.name }}</a>
+        {% else %}
+  <a class="btn btn-outline-primary mr-md-3" href="/sign_in">Войти</a>
+  <a class="btn btn-outline-primary" href="/sign_up">Зарегистрироваться</a>
+        {% endif %}
+</div>
+    {% if id != '0' %}
+        <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+          {% set i = 1 %}
+{% for el in ids %}
+{% if adds[el].actual == 1 %}
+          {% set i = i + 1 %}
+    <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+              <img src="static/img/{{ el }}/original.jpg" width="100%">
+            <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Нет фото</text></svg>
+            -->
+            <div class="card-body">
+              <p class="card-text">{{ adds[el].title }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="card-text text-right"><b>{{ adds[el].type }}</b></p>
+                <p class="card-text text-left"> {{ costs[el] }}₽</p>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="/add/{{ el }}">
+                    <button type="button" class="btn btn-sm btn-outline-secondary mb-3 mr-1">Посмотреть</button>
+                  </a>
+                  <button type="button" class="mb-3 mr-1">{{ phone_number }}</button>
+                </div>
+                <small style='font-size: 50%;' class="text-muted">{{ dates[el] }}</small>
+              </div>
+                <a href="/add/del/{{ el }}" class="py-5">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Удалить</button>
+                </a>
+                <a href="/add/edit/{{ el }}" class="py-5">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Редактировать</button>
+                </a>
+            </div>
+          </div>
+        </div>
+{% endif %}
+{% endfor %}
+          </div>
+        <p>
+            <div class="text-center"><h4><b>Вы можете <a href="/add_archive">перейти</a> к удаленным объявлениям</b></h4></div>
+        </p>
+{% else %}
+        <div class="text-center mb-3">
+            <h1><br>Вы еще не вошли в аккаунт.</p></h1>
+    <h3><a href="/login">Войти или зарегистрироваться</a></h3>
+        </div>
+
+        {% endif %}
+    </div>
+  </div>
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">© 2022 Seregin Corp.</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="/about">Связаться с нами</a></li>
+    </ul>
+  </footer>
+</body>
+</html>
